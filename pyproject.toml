@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pypong"
+version = "0.1.0"
+description = "A clean, object-oriented Pong game using Python turtle"
+readme = "README.md"
+authors = [{ name = "Mobin Yousefi", email = "" }]
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = ["pong", "game", "turtle", "python"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Games/Entertainment",
+]
+
+[project.urls]
+Homepage = "https://github.com/mobinyousefi"
+
+[project.scripts]
+pypong = "pypong.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pypong*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+  "E", "F", "W",          # pycodestyle/pyflakes/warnings
+  "I",                      # isort
+  "B",                      # flake8-bugbear
+  "UP",                     # pyupgrade
+  "ANN",                    # annotations
+]
+ignore = ["ANN101", "ANN102"]  # allow missing self/cls type annotations for brevity
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
